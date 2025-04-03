@@ -1,0 +1,8 @@
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: #121212; /* 어두운 배경 */
+    color: #ffffff; /* 텍스트 색상 */
+}

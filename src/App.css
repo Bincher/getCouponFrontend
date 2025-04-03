@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
-}
+.black-button{
+  border-radius: 46px;
+  width: 95px;
+  height: 30px;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0,0,0,1);
+
+  color: rgba(255,255,255,1);
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+
+  cursor: pointer;
+}
+
+.black-button:hover{
+  background-color: rgba(0,0,0,0.85);
+}
+
+.icon-box{
+  width: 24px;
+  height: 24px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.icon-button{
+  border-radius: 50% 50%;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.icon-button:hover{
+  background-color: rgba(0,0,0,0.05)
+
+}
+
+.icon{
+  width: 100%;
+  height: 100%;
+
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+}
+
+.coupon-icon{
+  background-image: url(image/coupon.png);
+}
+.github-icon{
+  background-image: url(image/github.png);
+}
+.velog-icon{
+  background-image: url(image/velog.png);
 }
