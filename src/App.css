@@ -22,6 +22,29 @@
   background-color: rgba(0,0,0,0.85);
 }
 
+.black-large-full-button{
+  border-radius: 46px;
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0,0,0,1);
+
+  color: rgba(255,255,255,1);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+
+  cursor: pointer;
+}
+
+.black-large-full-button:hover{
+  background-color: rgba(0,0,0,0.85);
+}
+
 .icon-box{
   width: 24px;
   height: 24px;
@@ -65,4 +88,10 @@
 }
 .velog-icon{
   background-image: url(image/velog.png);
+}
+.eye-light-off-icon{
+  background-image: url(image/eye-light-off.png);
+}
+.eye-light-on-icon{
+  background-image: url(image/eye-light-on.png);
 }

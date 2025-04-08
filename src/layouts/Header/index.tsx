@@ -1,11 +1,16 @@
 import React from 'react'
 import './style.css';
+import { useNavigate } from 'react-router-dom';
+import { AUTH_PATH, MAIN_PATH } from '../../constant';
 
 export default function Header(){
 
+    // function: 네비게이트 함수 //
+    const navigate = useNavigate();
+
     // event handler: 로고 클릭 이벤트 처리 함수 //
     const onLogoClickHandler =()=>{
-
+        navigate(MAIN_PATH());
     }
 
     // component: 로그인 버튼 컴포넌트 + 이후 마이페이지 버튼과 합칠 것 //
@@ -13,7 +18,7 @@ export default function Header(){
 
         // event handler: 로그인 버튼 클릭 이벤트 처리 함수 //
         const onSignInButtonClickHandler=()=>{
-
+            navigate(AUTH_PATH());
         }
 
         return(

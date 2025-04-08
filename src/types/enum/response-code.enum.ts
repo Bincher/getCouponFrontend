@@ -1,0 +1,18 @@
+export enum ResponseCode {
+    // HTTP Status 200
+    SUCCESS = "SU",
+
+    // HTTP Status 400
+    VALIDATION_FAILED = "VF",
+    DUPLICATE_ID = "DI",
+
+    // HTTP Status 401
+    SIGN_IN_FAIL = "SF",
+
+
+    // HTTP Status 403
+    NO_PERMISSION = "NP",
+
+    // HTTP Status 500
+    DATABASE_ERROR = "DBE",
+}
