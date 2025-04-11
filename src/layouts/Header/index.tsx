@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AUTH_PATH, MAIN_PATH } from '../../constant';
+import { useLoginUserStore } from '../../stores';
+import { useCookies } from 'react-cookie';
 
 export default function Header(){
+
+    // state: 로그인 유저 상태 //
+    const {loginUser, setLoginUser, resetLoginUser} = useLoginUserStore();
+
+    // state: cookie 상태 //
+    const [cookies, setCookie] = useCookies();
+
+    // state: 로그인 상태 //
+    const [isLogin, setLogin] = useState<boolean>(false);
 
     // function: 네비게이트 함수 //
     const navigate = useNavigate();
@@ -21,11 +32,28 @@ export default function Header(){
             navigate(AUTH_PATH());
         }
 
+        // event handler: 로그아웃 버튼 클릭 이벤트 처리 함수 //
+        const onSignOutButtonClickHandler =()=>{
+            resetLoginUser();
+            setCookie('accessToken','',{path: MAIN_PATH(),expires: new Date()});
+            navigate(MAIN_PATH());
+        }
+
+        if(isLogin){
+            return(
+                <div className='black-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>
+            )
+        }
         return(
+            
             <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
         )
     }
 
+    // effect: login user가 변경될 때 마다 실행될 함수 //
+    useEffect(() => {
+        setLogin(loginUser !== null);
+    }, [loginUser])
 
     return (
         <div id='header'>

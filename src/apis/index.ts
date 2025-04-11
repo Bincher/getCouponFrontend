@@ -2,6 +2,7 @@ import { IdCheckRequestDto, SignInRequestDto, SignUpRequestDto } from "./request
 import axios from "axios";
 import { IdCheckResponseDto, SignInResponseDto, SignUpResponseDto } from "./response/auth";
 import ResponseDto from "./response/Response.dto";
+import { GetSignInUserResponseDto } from "./response/user";
 
 const DOMAIN = 'http://localhost:4000';
 
@@ -56,3 +57,19 @@ export const idCheckRequest = async (requestBody: IdCheckRequestDto)=>{
         });
     return result;
 }
+
+const GET_SIGN_IN_USER_URL =()=>`${API_DOMAIN}/user`;
+
+export const GetSignInUserRequest = async (accessToken: string) =>{
+    const result = await axios.get(GET_SIGN_IN_USER_URL(), authorization(accessToken))
+        .then(response =>{
+            const responseBody: GetSignInUserResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error =>{
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+} 
