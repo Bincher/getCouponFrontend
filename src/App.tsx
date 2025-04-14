@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { AUTH_PATH, MAIN_PATH } from './constant';
+import { AUTH_PATH, COUPON_PATH, MAIN_PATH } from './constant';
 import Main from './views/Main';
 import Container from './layouts/Container';
 import Auth from './views/Auth';
@@ -11,6 +11,7 @@ import ResponseDto from './apis/response/Response.dto';
 import { User } from './types/interface';
 import { GetSignInUserResponseDto } from './apis/response/user';
 import { GetSignInUserRequest } from './apis';
+import Coupon from './views/Coupon';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route element={<Container />}>
           <Route path={MAIN_PATH()} element={<Main />} />
           <Route path={AUTH_PATH()} element={<Auth />} />
+          <Route path={COUPON_PATH(':id')} element={<Coupon />} />
         </Route>
         <Route path='*'  element={<h1>404 Not Found</h1>}/>
       </Routes>
