@@ -27,14 +27,14 @@ export default function Pagination(props: Props) {
     // event handler: 이전 클릭 이벤트 처리 //
     const onPreviousClickHandler =()=>{
         if(currentSection === 1) return;
-        setCurrentPage((currentSection - 1) * 3);
+        setCurrentPage((currentSection - 1) * 10);
         setCurrentSection(currentSection - 1);
     }
 
     // event handler: 다음 클릭 이벤트 처리 //
     const onNextClickHandler =()=>{
         if(currentSection === totalSection) return;
-        setCurrentPage(currentSection * 3 + 1);
+        setCurrentPage(currentSection * 10 + 1);
         setCurrentSection(currentSection + 1);
     }
 

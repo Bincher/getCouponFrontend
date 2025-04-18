@@ -93,3 +93,28 @@
         font-size: 12px;
     }
 }
+
+.floating-add-btn {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #4a90e2;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.floating-add-btn:hover {
+    background: #3573b7;
+}

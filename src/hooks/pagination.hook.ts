@@ -36,8 +36,8 @@ const usePagination =<T>(countPerPage: number)=>{
 
     // function: 보여줄 페이지 리스트 추출 함수 //
     const setViewPage =()=>{
-        const FIRST_INDEX = 3 * (currentSection - 1);
-        const LAST_INDEX = totalPageList.length > 3 * currentSection ? currentSection : totalPageList.length;
+        const FIRST_INDEX = 10 * (currentSection - 1);
+        const LAST_INDEX = totalPageList.length > 10 * currentSection ? currentSection : totalPageList.length;
         const viewPageList = totalPageList.slice(FIRST_INDEX,LAST_INDEX);
         setViewPageList(viewPageList);
     }
@@ -49,7 +49,7 @@ const usePagination =<T>(countPerPage: number)=>{
         for (let page = 1; page <= totalPage; page++) totalPageList.push(page);
         setTotalPageList(totalPageList);
         
-        const totalSection = Math.ceil(totalList.length / (countPerPage * 3));
+        const totalSection = Math.ceil(totalList.length / (countPerPage * 10));
         setTotalSection(totalSection);
 
         setCurrentPage(1);

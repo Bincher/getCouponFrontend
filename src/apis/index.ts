@@ -3,7 +3,8 @@ import axios from "axios";
 import { IdCheckResponseDto, SignInResponseDto, SignUpResponseDto } from "./response/auth";
 import ResponseDto from "./response/Response.dto";
 import { GetSignInUserResponseDto } from "./response/user";
-import { GetCouponListResponseDto } from "./response/coupon";
+import { GetCouponListResponseDto, PostCouponResponseDto } from "./response/coupon";
+import { PostCouponRequestDto } from "./request/coupon";
 
 const DOMAIN = 'http://localhost:4000';
 
@@ -76,6 +77,7 @@ export const GetSignInUserRequest = async (accessToken: string) =>{
 } 
 
 const GET_COUPON_LIST_URL =()=> `${API_DOMAIN}/coupon`;
+const POST_COUPON_URL =()=> `${API_DOMAIN}/coupon/admin`;
 
 export const GetCouponListRequest = async () =>{
     const result = await axios.get(GET_COUPON_LIST_URL())
@@ -90,3 +92,34 @@ export const GetCouponListRequest = async () =>{
         });
     return result;
 } 
+
+export const PostCouponRequest = async (requestBody: PostCouponRequestDto, accessToken: string) =>{
+    const result = await axios.post(POST_COUPON_URL(), requestBody ,authorization(accessToken))
+        .then(response =>{
+            const responseBody: PostCouponResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error =>{
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+} 
+
+const FILE_DOMAIN = `${DOMAIN}/file`;
+const FILE_UPLOAD_URL =()=> `${FILE_DOMAIN}/upload`;
+
+export const fileUploadRequest = async (data: FormData) => {
+    try {
+        const response = await axios.post(FILE_UPLOAD_URL(), data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error uploading file:', error);
+        return null;
+    }
+};
