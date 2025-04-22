@@ -3,8 +3,8 @@ import axios from "axios";
 import { IdCheckResponseDto, SignInResponseDto, SignUpResponseDto } from "./response/auth";
 import ResponseDto from "./response/Response.dto";
 import { GetSignInUserResponseDto } from "./response/user";
-import { GetCouponListResponseDto, PostCouponResponseDto } from "./response/coupon";
-import { PostCouponRequestDto } from "./request/coupon";
+import { GetCouponListResponseDto, PostCouponResponseDto, ReceiveCouponResponseDto } from "./response/coupon";
+import { PostCouponRequestDto, ReceiveCouponRequestDto } from "./request/coupon";
 
 const DOMAIN = 'http://localhost:4000';
 
@@ -78,6 +78,7 @@ export const GetSignInUserRequest = async (accessToken: string) =>{
 
 const GET_COUPON_LIST_URL =()=> `${API_DOMAIN}/coupon`;
 const POST_COUPON_URL =()=> `${API_DOMAIN}/coupon/admin`;
+const RECEIVE_COUPON_URL =()=> `${API_DOMAIN}/coupon/event`
 
 export const GetCouponListRequest = async () =>{
     const result = await axios.get(GET_COUPON_LIST_URL())
@@ -97,6 +98,20 @@ export const PostCouponRequest = async (requestBody: PostCouponRequestDto, acces
     const result = await axios.post(POST_COUPON_URL(), requestBody ,authorization(accessToken))
         .then(response =>{
             const responseBody: PostCouponResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error =>{
+            if(!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        });
+    return result;
+} 
+
+export const ReceiveCouponRequest = async (requestBody: ReceiveCouponRequestDto, accessToken: string) =>{
+    const result = await axios.post(RECEIVE_COUPON_URL(), requestBody ,authorization(accessToken))
+        .then(response =>{
+            const responseBody: ReceiveCouponResponseDto = response.data;
             return responseBody;
         })
         .catch(error =>{

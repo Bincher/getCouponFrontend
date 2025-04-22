@@ -6,6 +6,10 @@ export enum ResponseCode {
     VALIDATION_FAILED = "VF",
     DUPLICATE_ID = "DI",
     NOT_EXISTED_USER = "NU",
+    NOT_EXISTED_COUPON = "NC",
+    INSUFFICIENT_COUPON = "IC",
+    EXPIRED_COUPON = "EC",
+    DUPLICATED_COUPON = "DC",
 
     // HTTP Status 401
     SIGN_IN_FAIL = "SF",
