@@ -1,3 +1,3 @@
 export default interface ReceiveCouponRequestDto{
-    couponId: number;
+    couponId: string;
 }

@@ -8,6 +8,7 @@ import { GetCouponResponseDto, ReceiveCouponResponseDto } from '../../apis/respo
 import ResponseDto from '../../apis/response/Response.dto';
 import { GetCouponRequest, ReceiveCouponRequest } from '../../apis';
 import { Coupon } from '../../types/interface';
+import { ReceiveCouponRequestDto } from '../../apis/request/coupon';
 
 
 export default function CouponDetail() {
@@ -86,12 +87,44 @@ export default function CouponDetail() {
 
     // function: 쿠폰 받기 response 처리 함수 //
     const receiveCouponResponse = (responseBody: ReceiveCouponResponseDto | ResponseDto | null) => {
+        if (!responseBody) {
+            setIsLoading(false);
+            return;
+        }
+
+        const { code } = responseBody;
+        if (code === 'DBE')alert("데이터베이스 에러입니다.");
+        if (code === 'NU')alert("회원 정보가 없습니다.");
+        if (code === 'NC')alert("존재하지 않는 쿠폰입니다.");
+        if (code === 'IC')alert("모든 쿠폰이 소진되었습니다.");
+        if (code === 'EC')alert("만료된 쿠폰입니다.");
+        if (code === 'DC')alert("이미 수령한 쿠폰입니다.");
+
+        if (code !== 'SU') {
+            return;
+        }
         
+        alert("쿠폰 수령을 성공하였습니다!");
+        navigate(MAIN_PATH());
     };
 
     // event handler: 쿠폰 받기 버튼 클릭 이벤트 처리 //
-    const onReceiveCouponButtonClickHandler = (couponId : string|undefined) => {
-        alert("쿠폰 받기!");
+    const onReceiveCouponButtonClickHandler = (couponId : string | undefined) => {
+        if (!couponId) {
+            alert('쿠폰 정보가 올바르지 않습니다.');
+            return;
+        }
+        const accessToken = cookies.accessToken;
+        if (!accessToken) {
+            alert('로그인이 필요합니다.');
+            return;
+        }
+
+        const requestBody: ReceiveCouponRequestDto ={
+            couponId : couponId
+        }
+
+        ReceiveCouponRequest(requestBody, accessToken).then(receiveCouponResponse);
     };
 
     // effect: 컴포넌트가 마운트 될 때 쿠폰 정보 불러오기 //
