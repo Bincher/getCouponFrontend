@@ -11,7 +11,8 @@ import ResponseDto from './apis/response/Response.dto';
 import { User } from './types/interface';
 import { GetSignInUserResponseDto } from './apis/response/user';
 import { GetSignInUserRequest } from './apis';
-import Coupon from './views/Coupon';
+import CouponDetail from './views/CouponDetail';
+
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
         <Route element={<Container />}>
           <Route path={MAIN_PATH()} element={<Main />} />
           <Route path={AUTH_PATH()} element={<Auth />} />
-          <Route path={COUPON_PATH(':id')} element={<Coupon />} />
+          <Route path={COUPON_PATH(':couponId')} element={<CouponDetail />} />
         </Route>
         <Route path='*'  element={<h1>404 Not Found</h1>}/>
       </Routes>
